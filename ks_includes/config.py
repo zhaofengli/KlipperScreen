@@ -9,6 +9,8 @@ from io import StringIO
 
 from os import path
 
+from .paths import KS_DIR
+
 SCREEN_BLANKING_OPTIONS = [
     "300",    #5 Minutes
     "900",    #15 Minutes
@@ -72,7 +74,7 @@ class KlipperScreenConfig:
                 "value": num
             })
 
-        self.default_config_path = "%s/ks_includes/%s" % (os.getcwd(), self.configfile_name)
+        self.default_config_path = "%s/ks_includes/%s" % (KS_DIR, self.configfile_name)
         self.config = configparser.ConfigParser()
         self.config_path = self.get_config_file_location(configfile)
         logging.debug("Config path location: %s" % self.config_path)

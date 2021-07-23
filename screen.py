@@ -25,6 +25,7 @@ from gi.repository import Gtk, Gdk, GLib, Pango
 from jinja2 import Environment, Template
 
 from ks_includes import functions
+from ks_includes.paths import KS_DIR
 from ks_includes.KlippyWebsocket import KlippyWebsocket
 from ks_includes.KlippyRest import KlippyRest
 from ks_includes.files import KlippyFiles
@@ -54,8 +55,6 @@ PRINTER_BASE_STATUS_OBJECTS = [
     'pause_resume',
     'webhooks'
 ]
-
-klipperscreendir = os.getcwd()
 
 class KlipperScreen(Gtk.Window):
     """ Class for creating a screen for Klipper via HDMI """
@@ -424,7 +423,7 @@ class KlipperScreen(Gtk.Window):
         style_provider = Gtk.CssProvider()
 
 
-        css = open(klipperscreendir + "/styles/%s/style.css" % (self.theme))
+        css = open(KS_DIR + "/styles/%s/style.css" % (self.theme))
         css_data = css.read()
         css.close()
         css_data = css_data.replace("KS_FONT_SIZE",str(self.gtk.get_font_size()))
