@@ -76,6 +76,9 @@ def get_wireless_interfaces():
     return interfaces
 
 def get_software_version():
+    if 'KS_VERSION' in os.environ:
+        return os.environ['KS_VERSION']
+
     prog = ('git', '-C', os.path.dirname(__file__), 'describe', '--always',
             '--tags', '--long', '--dirty')
     try:
